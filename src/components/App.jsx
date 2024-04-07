@@ -1,5 +1,7 @@
-import { FeedbackOptions } from './feedback/feedback';
 import { Component } from 'react';
+import { Section } from './section/section';
+import { FeedbackOptions } from './feedback/feedback';
+import { Statistics } from './statistics/statistics';
 
 export class App extends Component {
 
@@ -16,6 +18,14 @@ export class App extends Component {
       }));
   }
 
+  total = () => {
+    return this.state.good + this.state.neutral + this.state.bad;
+  }
+
+  positivePercentage = () => {
+    return Math.round(this.state.good / this.total() * 100) || 0;
+  }
+
   render() {
     return (
       <div
@@ -29,7 +39,10 @@ export class App extends Component {
           backgroundColor: '#f0f0f0'
         }}
       >
-        <FeedbackOptions options={this.state} onLeaveFeedback={this.onLeaveFeedback} />
+        <Section title="Please leave feedback">
+          <FeedbackOptions options={this.state} onLeaveFeedback={this.onLeaveFeedback} />
+          <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={this.total()} positivePercentage={this.positivePercentage()} />
+        </Section>
       </div>
     );
   }
