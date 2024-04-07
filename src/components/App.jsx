@@ -1,4 +1,4 @@
-import {Feedback} from './feedback/feedback';
+import { FeedbackOptions } from './feedback/feedback';
 import { Component } from 'react';
 
 export class App extends Component {
@@ -29,7 +29,7 @@ export class App extends Component {
           backgroundColor: '#f0f0f0'
         }}
       >
-        <Feedback options={this.state} onLeaveFeedback={this.onLeaveFeedback} />
+        <FeedbackOptions options={this.state} onLeaveFeedback={this.onLeaveFeedback} />
       </div>
     );
   }
