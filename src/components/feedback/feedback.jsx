@@ -10,15 +10,9 @@ export class FeedbackOptions extends Component {
 
         return (
             <div className={css.buttons}>
-                <button type="button" className={css.button} onClick={onLeaveFeedback} data-type="good">
-                    Good
-                </button>
-                <button type="button" className={css.button} onClick={onLeaveFeedback} data-type="neutral">
-                    Neutral
-                </button>
-                <button type="button" className={css.button} onClick={onLeaveFeedback} data-type="bad">
-                    Bad
-                </button>
+                {Object.keys(options).map((key) => (
+                    <button key={key} className={css.button} data-type={key} onClick={onLeaveFeedback} >{key}</button>
+                ))}
             </div>
         );
     }
