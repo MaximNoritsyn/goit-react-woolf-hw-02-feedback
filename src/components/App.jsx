@@ -12,8 +12,7 @@ export class App extends Component {
     bad: 0
   }
 
-  onLeaveFeedback = (e) => {
-      const feedbackType = e.target.dataset.type;
+  onLeaveFeedback = (feedbackType) => {
       this.setState((prevState) => ({
           [feedbackType]: prevState[feedbackType] + 1
       }));
