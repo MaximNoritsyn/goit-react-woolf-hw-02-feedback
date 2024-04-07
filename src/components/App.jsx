@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { Section } from './section/section';
 import { FeedbackOptions } from './feedback/feedback';
 import { Statistics } from './statistics/statistics';
+import { Notification } from './notification/notification';
 
 export class App extends Component {
 
@@ -33,7 +34,7 @@ export class App extends Component {
           height: '100vh',
           display: 'flex',
           justifyContent: 'center',
-          alignItems: 'center',
+          alignItems: 'baseline',
           fontSize: 40,
           color: '#010101',
           backgroundColor: '#f0f0f0'
@@ -41,7 +42,14 @@ export class App extends Component {
       >
         <Section title="Please leave feedback">
           <FeedbackOptions options={this.state} onLeaveFeedback={this.onLeaveFeedback} />
-          <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={this.total()} positivePercentage={this.positivePercentage()} />
+          {this.total()
+            ? <Statistics
+              good={this.state.good}
+              neutral={this.state.neutral}
+              bad={this.state.bad}
+              total={this.total()}
+              positivePercentage={this.positivePercentage()} />
+            : <Notification message="There is no feedback" />}
         </Section>
       </div>
     );
